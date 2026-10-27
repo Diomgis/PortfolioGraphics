@@ -8,559 +8,232 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-
 @font-face{
   font-family:'The Youngest';
-  src: url('fonts/TheYoungest.woff2') format('woff2'),
-       url('fonts/TheYoungest.woff')  format('woff');
+  src:url('fonts/TheYoungest.woff2') format('woff2'),url('fonts/TheYoungest.woff') format('woff');
   font-weight:400;
   font-display:swap;
 }
-
-:root{
-  --bg:      #f1f1f1;
-  --plum:    #080808;
-  --plum-55: #080808;
-  --gap: 38px;
-  --max: 1020px;
-}
-
+:root{ --bg:#f1f1f1; --plum:#080808; --plum-55:#080808; --gap:38px; --max:1020px; }
 *{ margin:0; padding:0; box-sizing:border-box; }
+html{ scroll-behavior:smooth; scroll-padding-top:112px; }
+body{ background:var(--bg); color:var(--plum); font-family:'Work Sans',sans-serif; }
+.wrap{ max-width:var(--max); margin:0 auto; padding:0 24px; }
 
-html{
-  scroll-behavior:smooth;
-  scroll-padding-top:112px; /* keeps headings clear of the sticky header */
-}
-
-body{
-  background:var(--bg);
-  color:var(--plum);
-  font-family:'Work Sans', sans-serif;
-}
-
-.wrap{
-  max-width:var(--max);
-  margin:0 auto;
-  padding:0 24px;
-}
-
-/* ---------- Header ---------- */
-header{
-  position:sticky;
-  top:0;
-  z-index:10;
-  background:var(--bg);
-  padding:34px 0 26px;
-}
-
+/* Header */
+header{ position:sticky; top:0; z-index:10; background:var(--bg); padding:34px 0 26px; }
 .name{
-  font-family:'The Youngest', 'EB Garamond', Georgia, serif;
+  font-family:'The Youngest','EB Garamond',Georgia,serif;
   font-weight:400;
-  font-size:clamp(2rem, 4.4vw, 2.9rem);
+  font-size:clamp(2rem,4.4vw,2.9rem);
   text-align:center;
   letter-spacing:0.01em;
 }
-
-.name a{
-  color:inherit;
-  text-decoration:none;
-}
-
-nav{
-  margin-top:14px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  gap:34px;
-  flex-wrap:wrap;
-}
-
+.name a{ color:inherit; text-decoration:none; }
+nav{ margin-top:14px; display:flex; justify-content:center; align-items:center; gap:34px; flex-wrap:wrap; }
 nav a{
-  font-size:0.78rem;
-  font-weight:400;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--plum);
-  text-decoration:none;
-  padding-bottom:2px;
-  border-bottom:1px solid transparent;
-  transition:border-color .18s ease;
+  font-size:0.78rem; font-weight:400; letter-spacing:0.14em; text-transform:uppercase;
+  color:var(--plum); text-decoration:none; padding-bottom:2px;
+  border-bottom:1px solid transparent; transition:border-color .18s ease;
 }
+nav a:hover,nav a:focus-visible{ border-bottom-color:var(--plum); }
+nav .sep{ color:var(--plum-55); font-size:0.8rem; user-select:none; }
 
-nav a:hover,
-nav a:focus-visible{ border-bottom-color:var(--plum); }
-
-nav .sep{
-  color:var(--plum-55);
-  font-size:0.8rem;
-  user-select:none;
-}
-
-/* ---------- Section titles ---------- */
+/* Section titles */
 h2{
-  font-family:'Work Sans', sans-serif;
-  font-weight:700;
-  font-size:clamp(1.5rem, 3.2vw, 2.1rem);
-  letter-spacing:0.06em;
-  text-transform:uppercase;
-  text-align:center;
-  padding:30px 0 28px;   /* evened up with the header spacing */
+  font-family:'Work Sans',sans-serif; font-weight:700;
+  font-size:clamp(1.5rem,3.2vw,2.1rem); letter-spacing:0.06em;
+  text-transform:uppercase; text-align:center; padding:30px 0 28px;
 }
+section + section h2{ padding-top:64px; }
 
-section + section h2{ padding-top:64px; } /* a little more air between blocks */
-
-/* ---------- Intro (top of the page) ---------- */
+/* Intro */
 .intro{ padding:34px 0 6px; }
-
-.intro-grid{
-  position:relative;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  align-items:center;
-}
-
-/* the vertical line between the two parts */
+.intro-grid{ position:relative; display:grid; grid-template-columns:1fr 1fr; align-items:center; }
 .intro-grid::before{
-  content:"";
-  position:absolute;
-  left:50%;
-  top:0;
-  bottom:0;
-  width:1px;
-  background:rgba(8, 8, 8, 0.35);
+  content:""; position:absolute; left:50%; top:0; bottom:0; width:1px;
+  background:rgba(8,8,8,0.35);
 }
-
-.intro-hello .slide,
-.intro-text .slide{ display:block; }
-
+.intro-hello .slide,.intro-text .slide{ display:block; }
 .intro-hello{
-  padding-right:28px;
-  text-align:right;
-  text-transform:uppercase;
-  font-weight:700;
-  font-size:clamp(1.3rem, 2.5vw, 2rem);
-  line-height:1.12;
-  letter-spacing:0.01em;
+  padding-right:28px; text-align:right; text-transform:uppercase; font-weight:700;
+  font-size:clamp(1.3rem,2.5vw,2rem); line-height:1.12; letter-spacing:0.01em;
 }
-
 .intro-text{
-  padding-left:28px;
-  text-transform:uppercase;
-  font-size:0.78rem;
-  letter-spacing:0.06em;
-  line-height:1.6;
+  padding-left:28px; text-transform:uppercase; font-size:0.78rem;
+  letter-spacing:0.06em; line-height:1.6;
 }
-
 @media (max-width:760px){
-  .intro{ padding-top:22px; }
-  .intro-grid{ grid-template-columns:1fr; gap:22px; }
-  .intro-hello{ padding-right:0; text-align:left; font-size:clamp(1.4rem, 6vw, 1.8rem); }
-  .intro-text{ padding-left:0; font-size:0.74rem; }
-  .intro-grid::before{ display:none; }
+  .intro{ padding:4px 0 0; }
+  section + section h2{ padding-top:46px; }
+  .intro + section h2{ padding-top:34px; }
+  .intro-grid{ grid-template-columns:1fr; }
+  /* the line becomes horizontal and sits between the two texts */
+  .intro-grid::before{ position:static; grid-row:2; width:100%; height:1px; }
+  .intro-hello{ grid-row:1; padding:0 0 22px; text-align:left; font-size:clamp(1.15rem,5vw,1.5rem); }
+  .intro-text{ grid-row:3; padding:22px 0 0; font-size:0.74rem; }
 }
 
-/* ---------- Image grid ---------- */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(3, 1fr);
-  gap:var(--gap);
-}
-
+/* Image grid */
+.grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:var(--gap); }
 .tile{
-  display:block;
-  aspect-ratio:1 / 1.17;
-  background:var(--plum);
-  overflow:hidden;
-  position:relative;
-  text-decoration:none;
+  display:block; aspect-ratio:1/1.17; background:var(--plum);
+  overflow:hidden; position:relative; text-decoration:none;
 }
-
-.tile img,
-.tile video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  display:block;
-}
-
-/* full-width tile — spans all columns, wide/short shape */
-.tile.wide{
-  grid-column:1 / -1;
-  aspect-ratio:2.4 / 1;
-}
-
+.tile img,.tile video{ width:100%; height:100%; object-fit:cover; display:block; }
+.tile.wide{ grid-column:1/-1; aspect-ratio:2.4/1; }
 .tile span{
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  color:var(--bg);
-  font-size:0.75rem;
-  letter-spacing:0.1em;
-  text-transform:uppercase;
-  opacity:0.55;
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  color:var(--bg); font-size:0.75rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.55;
 }
-
-
-/* perfectly square tile */
-.tile.square{
-  aspect-ratio:1 / 1;
-}
-
-/* medium-wide tile — spans 2 of the 3 columns, narrower than .wide */
-.tile.wide-2{
-  grid-column:span 2;
-  aspect-ratio:2 / 1;
-}
-
+.tile.square{ aspect-ratio:1/1; }
+.tile.wide-2{ grid-column:span 2; aspect-ratio:2/1; }
 .section-sub{
-  text-align:center;
-  font-size:0.8rem;
-  letter-spacing:0.06em;
-  color:var(--plum-55);
-  margin-top:-16px;
-  padding-bottom:36px;
+  text-align:center; font-size:0.8rem; letter-spacing:0.06em; color:var(--plum-55);
+  margin-top:-16px; padding-bottom:36px;
 }
+.wide-pair{ grid-column:1/-1; display:grid; grid-template-columns:1fr 1fr; gap:var(--gap); }
+.wide-pair .tile{ aspect-ratio:1.3/1; }
+.mixed-pair{ grid-column:1/-1; display:grid; grid-template-columns:1fr 5fr; gap:var(--gap); }
+.mixed-pair .tall{ aspect-ratio:2/5; }
+.mixed-pair .banner{ aspect-ratio:2/1; }
 
-.wide-pair{
-  grid-column:1 / -1;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:var(--gap);
-}
-
-.wide-pair .tile{
-  aspect-ratio:1.3 / 1;
-}
-
-/* tall + wide pair: same height, each shape matches its image exactly */
-.mixed-pair{
-  grid-column:1 / -1;
-  display:grid;
-  grid-template-columns:1fr 5fr;
-  gap:var(--gap);
-}
-
-.mixed-pair .tall{ aspect-ratio:2 / 5; }
-.mixed-pair .banner{ aspect-ratio:2 / 1; }
-
-/* ---------- Other works: presentation cards ---------- */
-.works{
-  display:flex;
-  flex-direction:column;
-  gap:var(--gap);
-}
-
+/* Other works */
+.works{ display:flex; flex-direction:column; gap:var(--gap); }
 .work-card{
-  display:grid;
-  /* first column = exactly the width the big cover has today (no stretching) */
-  grid-template-columns:calc(46.67% - 26.65px) minmax(0,1fr);
-  gap:22px;
-  align-items:center;
-  padding:18px;
-  border:1px solid rgba(77, 38, 62, 0.18);
+  display:grid; grid-template-columns:calc(46.67% - 26.65px) minmax(0,1fr);
+  gap:22px; align-items:center; padding:18px; border:1px solid rgba(77,38,62,0.18); border-radius:20px;
 }
-
-/* cover on top, the three slides in a row below it */
-.work-media{
-  display:flex;
-  flex-direction:column;
-  gap:10px;
-}
-
-.work-cover{ aspect-ratio:16 / 10; }
-
-.work-thumbs{
-  display:grid;
-  grid-template-columns:repeat(3, minmax(0,1fr));
-  gap:10px;
-}
-
-.work-thumbs .tile{
-  aspect-ratio:16 / 9;
-  min-height:0;
-}
-
-.work-thumbs .tile span,
-.work-cover span{ font-size:0.68rem; }
-
-/* card variant: two equal images side by side (e.g. both sides of a brochure) */
-.work-card.work-card--duo{
-  grid-template-columns:minmax(0,2.6fr) minmax(0,1.2fr);
-}
-
-.work-duo{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:14px;
-  align-self:center;
-}
-
-.work-duo .tile{ aspect-ratio:860 / 613; }
-
-/* card variant: one single image (e.g. a collage) */
-.work-card.work-card--single{
-  grid-template-columns:calc(46.67% - 26.65px) minmax(0,1fr);
-}
-
-.work-single .tile{ aspect-ratio:1280 / 985; }
-
-.work-info{
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  padding:0 8px;
-}
-
-.work-type{
-  font-size:0.68rem;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  color:var(--plum-55);
-}
-
-.work-title{
-  margin-top:12px;
-  font-size:clamp(1.3rem, 2.4vw, 1.7rem);
-  font-weight:500;
-  line-height:1.2;
-}
-
-.work-meta{
-  margin-top:10px;
-  font-size:0.8rem;
-  color:var(--plum-55);
-}
-
-.work-desc{
-  margin-top:16px;
-  font-size:0.84rem;
-  line-height:1.65;
-}
-
-.work-actions{
-  margin-top:24px;
-  display:flex;
-  align-items:center;
-  flex-wrap:wrap;
-  gap:22px;
-}
-
-/* text column = exactly the height of the image block */
-.work-card:not(.work-card--duo) .work-info{
-  align-self:stretch;
-  justify-content:flex-start;
-  padding:0 8px;
-}
-
-.work-card:not(.work-card--duo) .work-title{
-  margin-top:10px;
-  font-size:clamp(1.4rem, 2.6vw, 1.9rem);
-}
-
-.work-card:not(.work-card--duo) .work-meta{
-  margin-top:10px;
-  font-size:0.85rem;
-}
-
-.work-card:not(.work-card--duo) .work-desc{
-  margin-top:16px;
-  font-size:0.88rem;
-  line-height:1.7;
-}
-
-/* buttons pushed to the bottom, no line */
-.work-card:not(.work-card--duo) .work-actions{
-  margin-top:auto;
-  padding-top:0;
-  border-top:none;
-}
-
+.work-media{ display:flex; flex-direction:column; gap:10px; }
+.work-cover{ aspect-ratio:16/10; }
+.work-thumbs{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; }
+.work-thumbs .tile{ aspect-ratio:16/9; min-height:0; }
+.work-thumbs .tile span,.work-cover span{ font-size:0.68rem; }
+.work-card.work-card--duo{ grid-template-columns:minmax(0,2.6fr) minmax(0,1.2fr); }
+.work-duo{ display:grid; grid-template-columns:1fr 1fr; gap:14px; align-self:center; }
+.work-duo .tile{ aspect-ratio:860/613; }
+.work-card.work-card--single{ grid-template-columns:calc(46.67% - 26.65px) minmax(0,1fr); }
+.work-single .tile{ aspect-ratio:1280/985; }
+.work-info{ display:flex; flex-direction:column; justify-content:center; padding:0 8px; }
+.work-type{ font-size:0.68rem; letter-spacing:0.14em; text-transform:uppercase; color:var(--plum-55); }
+.work-title{ margin-top:12px; font-size:clamp(1.3rem,2.4vw,1.7rem); font-weight:500; line-height:1.2; }
+.work-meta{ margin-top:10px; font-size:0.8rem; color:var(--plum-55); }
+.work-desc{ margin-top:16px; font-size:0.84rem; line-height:1.65; }
+.work-actions{ margin-top:24px; display:flex; align-items:center; flex-wrap:wrap; gap:22px; }
+.work-card:not(.work-card--duo) .work-info{ align-self:stretch; justify-content:flex-start; padding:0 8px; }
+.work-card:not(.work-card--duo) .work-title{ margin-top:10px; font-size:clamp(1.4rem,2.6vw,1.9rem); }
+.work-card:not(.work-card--duo) .work-meta{ margin-top:10px; font-size:0.85rem; }
+.work-card:not(.work-card--duo) .work-desc{ margin-top:16px; font-size:0.88rem; line-height:1.7; }
+.work-card:not(.work-card--duo) .work-actions{ margin-top:auto; padding-top:0; border-top:none; }
 .work-media{ align-self:stretch; }
-
-.btn-pill,
-.link-pdf{
-  display:inline-flex;
-  align-items:center;
-  gap:9px;
-  font-size:0.8rem;
-  color:var(--plum);
-  text-decoration:none;
+.btn-pill,.link-pdf{
+  display:inline-flex; align-items:center; gap:9px; font-size:0.8rem;
+  color:var(--plum); text-decoration:none;
 }
-
 .btn-pill{
-  padding:11px 24px;
-  border:1px solid var(--plum);
-  border-radius:999px;
-  transition:background .18s ease, color .18s ease;
+  padding:11px 24px; border:1px solid var(--plum); border-radius:999px;
+  transition:background .18s ease,color .18s ease;
 }
+.btn-pill:hover,.btn-pill:focus-visible{ background:var(--plum); color:var(--bg); }
+.link-pdf{ padding-bottom:2px; border-bottom:1px solid transparent; transition:border-color .18s ease; }
+.link-pdf:hover,.link-pdf:focus-visible{ border-bottom-color:var(--plum); }
+.btn-pill svg,.link-pdf svg{ width:15px; height:15px; flex:none; }
 
-.btn-pill:hover,
-.btn-pill:focus-visible{
-  background:var(--plum);
-  color:var(--bg);
-}
-
-.link-pdf{
-  padding-bottom:2px;
-  border-bottom:1px solid transparent;
-  transition:border-color .18s ease;
-}
-
-.link-pdf:hover,
-.link-pdf:focus-visible{ border-bottom-color:var(--plum); }
-
-.btn-pill svg,
-.link-pdf svg{
-  width:15px;
-  height:15px;
-  flex:none;
-}
-
-/* ---------- Contact ---------- */
+/* Contact */
 #contact{ padding-bottom:110px; }
-
 .contact-body{
-  text-align:center;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:22px;
-  font-size:0.82rem;
-  letter-spacing:0.13em;
-  text-transform:uppercase;
-  line-height:1.7;
+  text-align:center; display:flex; flex-direction:column; align-items:center; gap:22px;
+  font-size:0.82rem; letter-spacing:0.13em; text-transform:uppercase; line-height:1.7;
 }
-
 .contact-body a{
-  color:var(--plum);
-  text-decoration:none;
-  border-bottom:1px solid transparent;
+  color:var(--plum); text-decoration:none; border-bottom:1px solid transparent;
   transition:border-color .18s ease;
 }
-
-.contact-body a:hover,
-.contact-body a:focus-visible{ border-bottom-color:var(--plum); }
-
+.contact-body a:hover,.contact-body a:focus-visible{ border-bottom-color:var(--plum); }
 .contact-body address{ font-style:normal; max-width:30ch; }
 
-/* ---------- Responsive ---------- */
+/* Responsive */
 @media (max-width:760px){
-  :root{ --gap:22px; }
-  .grid{ grid-template-columns:repeat(2, 1fr); }
-  nav{ gap:18px; }
-  html{ scroll-padding-top:150px; }
-  .mixed-pair{ grid-template-columns:1fr; }
-  .mixed-pair .tall{ width:min(260px, 70%); margin:0 auto; }
+  :root{ --gap:10px; }
+  .works{ gap:22px; }
+  .section-sub{ padding-bottom:20px; }
+  header{ padding-bottom:18px; }
+  nav{ flex-wrap:nowrap; gap:clamp(8px,2.6vw,16px); }
+  nav a{ font-size:clamp(0.52rem,2.5vw,0.7rem); letter-spacing:0.06em; white-space:nowrap; }
+  nav .sep{ display:none; }
+  html{ scroll-padding-top:120px; }
   .work-card{ grid-template-columns:1fr; }
   .work-card.work-card--duo{ grid-template-columns:1fr; }
   .work-info{ padding:6px 4px 4px; }
-
-  /* mobile: normal spacing instead of "pinned to the bottom" */
-  .work-card:not(.work-card--duo) .work-info{
-    padding:6px 4px 4px;
-  }
-
-  .work-card:not(.work-card--duo) .work-actions{
-    margin-top:26px;
-    gap:14px 22px;
-  }
+  .work-card:not(.work-card--duo) .work-info{ padding:6px 4px 4px; }
+  .work-card:not(.work-card--duo) .work-actions{ margin-top:26px; gap:14px 22px; }
 }
+@media (prefers-reduced-motion:reduce){ html{ scroll-behavior:auto; } }
 
-@media (max-width:460px){
-  .grid{ grid-template-columns:1fr; }
-  nav .sep{ display:none; }
-
-
-  .wide-pair{ grid-template-columns:1fr; }
-}
-
-@media (prefers-reduced-motion:reduce){
-  html{ scroll-behavior:auto; }
-}
-
-/* ---------- Lightbox ---------- */
+/* Lightbox */
 a.tile{ cursor:zoom-in; }
-
 .lightbox{
-  position:fixed;
-  inset:0;
-  z-index:100;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:24px;
-  background:rgba(8,8,8,0.92);
+  position:fixed; inset:0; z-index:100; display:none; align-items:center;
+  justify-content:center; padding:24px; background:rgba(8,8,8,0.92);
 }
-
 .lightbox.open{ display:flex; }
 body.lb-open{ overflow:hidden; }
-
-.lightbox img{
-  max-width:100%;
-  max-height:100%;
-  object-fit:contain;
-  display:block;
-}
-
+.lightbox img{ max-width:100%; max-height:100%; object-fit:contain; display:block; }
 .lb-btn{
-  position:absolute;
-  background:none;
-  border:0;
-  color:var(--bg);
-  font-size:2.4rem;
-  line-height:1;
-  padding:14px;
-  cursor:pointer;
-  opacity:0.75;
-  transition:opacity .18s ease;
+  position:absolute; background:none; border:0; color:var(--bg); font-size:2.4rem;
+  line-height:1; padding:14px; cursor:pointer; opacity:0.75; transition:opacity .18s ease;
 }
-
-.lb-btn:hover,
-.lb-btn:focus-visible{ opacity:1; }
-
+.lb-btn:hover,.lb-btn:focus-visible{ opacity:1; }
 .lb-close{ top:8px; right:12px; }
 .lb-prev{ left:4px; top:50%; transform:translateY(-50%); }
 .lb-next{ right:4px; top:50%; transform:translateY(-50%); }
 
-/* ---------- Intro: opening animation ---------- */
+/* Intro: opening animation */
 @keyframes fade-in{ from{ opacity:0; } to{ opacity:1; } }
-@keyframes fade-up{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
 @keyframes line-draw{ to{ transform:scaleY(1); } }
 @keyframes wipe-left{ from{ clip-path:inset(0 0 0 100%); } to{ clip-path:inset(0 0 0 0); } }
 @keyframes wipe-right{ from{ clip-path:inset(0 100% 0 0); } to{ clip-path:inset(0 0 0 0); } }
 @keyframes slide-left{ from{ transform:translateX(48px); } to{ transform:none; } }
 @keyframes slide-right{ from{ transform:translateX(-48px); } to{ transform:none; } }
-
 @media (prefers-reduced-motion:no-preference){
   header{ animation:fade-in 1s ease both; }
-
-  /* 1. the line draws itself from top to bottom */
   .intro-grid::before{
-    transform:scaleY(0);
-    transform-origin:top center;
+    transform:scaleY(0); transform-origin:top center;
     animation:line-draw .9s cubic-bezier(.65,0,.35,1) .25s forwards;
   }
-
-  /* 2. the heading slides out of the line to the left, the text to the right */
   .intro-hello{ animation:wipe-left 1.3s cubic-bezier(.22,.61,.36,1) .8s both; }
   .intro-hello .slide{ animation:slide-left 1.3s cubic-bezier(.22,.61,.36,1) .8s both; }
-
   .intro-text{ animation:wipe-right 1.3s cubic-bezier(.22,.61,.36,1) .95s both; }
   .intro-text .slide{ animation:slide-right 1.3s cubic-bezier(.22,.61,.36,1) .95s both; }
 }
 
-/* on phones there is no line, so the two parts simply fade up one after another */
+/* Phones: line draws left to right, heading slides up out of it, text slides down out of it */
+@keyframes line-draw-x{ to{ transform:scaleX(1); } }
+@keyframes wipe-up{ from{ clip-path:inset(100% 0 0 0); } to{ clip-path:inset(0 0 0 0); } }
+@keyframes wipe-down{ from{ clip-path:inset(0 0 100% 0); } to{ clip-path:inset(0 0 0 0); } }
+@keyframes slide-up{ from{ transform:translateY(32px); } to{ transform:none; } }
+@keyframes slide-down{ from{ transform:translateY(-32px); } to{ transform:none; } }
 @media (prefers-reduced-motion:no-preference) and (max-width:760px){
-  .intro-hello{ animation:fade-up 1s cubic-bezier(.22,.61,.36,1) .3s both; }
-  .intro-text{ animation:fade-up 1s cubic-bezier(.22,.61,.36,1) .6s both; }
-  .intro-hello .slide,
-  .intro-text .slide{ animation:none; }
+  .intro-grid::before{
+    transform:scaleX(0); transform-origin:left center;
+    animation:line-draw-x .9s cubic-bezier(.65,0,.35,1) .25s forwards;
+  }
+  .intro-hello{ animation:wipe-up 1.3s cubic-bezier(.22,.61,.36,1) .8s both; }
+  .intro-hello .slide{ animation:slide-up 1.3s cubic-bezier(.22,.61,.36,1) .8s both; }
+  .intro-text{ animation:wipe-down 1.3s cubic-bezier(.22,.61,.36,1) .95s both; }
+  .intro-text .slide{ animation:slide-down 1.3s cubic-bezier(.22,.61,.36,1) .95s both; }
 }
 
-
-
+/* Reveal on scroll (.rv is added by the script at the bottom) */
+@keyframes rv-in{
+  0%{ opacity:0; transform:translateY(26px); }
+  35%{ opacity:1; }
+  100%{ opacity:1; transform:translateY(0); }
+}
+@media (prefers-reduced-motion:no-preference){
+  .rv{ opacity:0; }
+  .rv.in{ animation:rv-in .8s cubic-bezier(.16,1,.3,1) var(--d,0ms) both; }
+}
 </style>
 </head>
 <body id="top">
@@ -598,15 +271,15 @@ body.lb-open{ overflow:hidden; }
     <h2>Graphic design for CSEC VNTU</h2>
     <p class="section-sub">Posters made for Central Student Election Committee of VNTU</p>
     <div class="grid">
-      <a class="tile square" href="IMG_4165.JPG"><img src="IMG_4165.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile square" href="IMG_4166.JPG"><img src="IMG_4166.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile square" href="IMG_4167.JPG"><img src="IMG_4167.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile square" href="IMG_4168.JPG"><img src="IMG_4168.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile square" href="IMG_4169.JPG"><img src="IMG_4169.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile square" href="IMG_4170.JPG"><img src="IMG_4170.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile square" href="IMG_4171.JPG"><img src="IMG_4171.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile square" href="IMG_4172.JPG"><img src="IMG_4172.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile square" href="csec.jpg"><img src="csec.jpg" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4165.JPG"><img src="IMG_4165.JPG" alt="Title"></a>
+      <a class="tile square" href="IMG_4166.JPG"><img src="IMG_4166.JPG" alt="Title"></a>
+      <a class="tile square" href="IMG_4167.JPG"><img src="IMG_4167.JPG" alt="Title"></a>
+      <a class="tile square" href="IMG_4168.JPG"><img src="IMG_4168.JPG" alt="Title"></a>
+      <a class="tile square" href="IMG_4169.JPG"><img src="IMG_4169.JPG" alt="Title"></a>
+      <a class="tile square" href="IMG_4170.JPG"><img src="IMG_4170.JPG" alt="Title"></a>
+      <a class="tile square" href="IMG_4171.JPG"><img src="IMG_4171.JPG" alt="Title"></a>
+      <a class="tile square" href="IMG_4172.JPG"><img src="IMG_4172.JPG" alt="Title"></a>
+      <a class="tile square" href="csec.jpg"><img src="csec.jpg" alt="Title"></a>
     </div>
   </div>
 </section>
@@ -616,21 +289,21 @@ body.lb-open{ overflow:hidden; }
     <h2>Graphic design for VNTU</h2>
     <p class="section-sub">Posters made for social media of Vinnytsia National Technical University</p>
     <div class="grid">
-      <a class="tile square" href="IMG_4133.JPG"><img src="IMG_4133.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile square" href="IMG_4134.JPG"><img src="IMG_4134.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile square" href="IMG_4136.JPG"><img src="IMG_4136.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile" href="IMG_4140.JPG"><img src="IMG_4140.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile" href="IMG_4137.JPG"><img src="IMG_4137.JPG" alt="Title" loading="lazy"></a>
-      <a class="tile" href="photo_5452077467922274215_y.jpg"><img src="photo_5452077467922274215_y.jpg" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4133.JPG"><img src="IMG_4133.JPG" alt="Title"></a>
+      <a class="tile square" href="IMG_4134.JPG"><img src="IMG_4134.JPG" alt="Title"></a>
+      <a class="tile square" href="IMG_4136.JPG"><img src="IMG_4136.JPG" alt="Title"></a>
+      <a class="tile" href="IMG_4140.JPG"><img src="IMG_4140.JPG" alt="Title"></a>
+      <a class="tile" href="IMG_4137.JPG"><img src="IMG_4137.JPG" alt="Title"></a>
+      <a class="tile" href="photo_5452077467922274215_y.jpg"><img src="photo_5452077467922274215_y.jpg" alt="Title"></a>
 
       <div class="wide-pair">
-        <a class="tile" href="IMG_4138.JPG"><img src="IMG_4138.JPG" alt="Title" loading="lazy"></a>
-        <a class="tile" href="IMG_4139.JPG"><img src="IMG_4139.JPG" alt="Title" loading="lazy"></a>
+        <a class="tile" href="IMG_4138.JPG"><img src="IMG_4138.JPG" alt="Title"></a>
+        <a class="tile" href="IMG_4139.JPG"><img src="IMG_4139.JPG" alt="Title"></a>
       </div>
 
       <div class="mixed-pair">
-        <a class="tile tall" href="long.jpg"><img src="long.jpg" alt="Title" loading="lazy"></a>
-        <a class="tile banner" href="cert.jpg"><img src="cert.jpg" alt="Title" loading="lazy"></a>
+        <a class="tile tall" href="long.jpg"><img src="long.jpg" alt="Title"></a>
+        <a class="tile banner" href="cert.jpg"><img src="cert.jpg" alt="Title"></a>
       </div>
     </div>
   </div>
@@ -640,16 +313,16 @@ body.lb-open{ overflow:hidden; }
   <div class="wrap">
     <h2>Digital art</h2>
     <div class="grid">
-      <div class="tile wide"><video src="Scene1(3).mp4" autoplay muted loop playsinline preload="none"></video></div>
-      <a class="tile" href="image1.PNG"><img src="image1.PNG" alt="Title" loading="lazy"></a>
-      <a class="tile" href="img2 (1).PNG"><img src="img2 (1).PNG" alt="Title" loading="lazy"></a>
-      <a class="tile" href="img2 (2).PNG"><img src="img2 (2).PNG" alt="Title" loading="lazy"></a>
-      <a class="tile" href="img2 (3).PNG"><img src="img2 (3).PNG" alt="Title" loading="lazy"></a>
-      <a class="tile" href="img2 (4).PNG"><img src="img2 (4).PNG" alt="Title" loading="lazy"></a>
-      <a class="tile" href="img2 (5).PNG"><img src="img2 (5).PNG" alt="Title" loading="lazy"></a>
-      <div class="tile"><video src="vidh.mp4" autoplay muted loop playsinline preload="none"></video></div>
-      <a class="tile" href="img2 (7).PNG"><img src="img2 (7).PNG" alt="Title" loading="lazy"></a>
-      <div class="tile"><video src="SceneSlime.mp4" autoplay muted loop playsinline preload="none"></video></div>
+      <div class="tile wide"><video src="Scene1(3).mp4" autoplay muted loop playsinline preload="auto"></video></div>
+      <a class="tile" href="image1.PNG"><img src="image1.PNG" alt="Title"></a>
+      <a class="tile" href="img2 (1).PNG"><img src="img2 (1).PNG" alt="Title"></a>
+      <a class="tile" href="img2 (2).PNG"><img src="img2 (2).PNG" alt="Title"></a>
+      <a class="tile" href="img2 (3).PNG"><img src="img2 (3).PNG" alt="Title"></a>
+      <a class="tile" href="img2 (4).PNG"><img src="img2 (4).PNG" alt="Title"></a>
+      <a class="tile" href="img2 (5).PNG"><img src="img2 (5).PNG" alt="Title"></a>
+      <div class="tile"><video src="vidh.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+      <a class="tile" href="img2 (7).PNG"><img src="img2 (7).PNG" alt="Title"></a>
+      <div class="tile"><video src="SceneSlime.mp4" autoplay muted loop playsinline preload="auto"></video></div>
     </div>
   </div>
 </section>
@@ -661,11 +334,11 @@ body.lb-open{ overflow:hidden; }
 
       <article class="work-card">
         <div class="work-media">
-          <a class="tile work-cover" href="Pres (2).png"><img src="Pres (2).png" alt="Title" loading="lazy"></a>
+          <a class="tile work-cover" href="Pres (2).png"><img src="Pres (2).png" alt="Title"></a>
           <div class="work-thumbs">
-            <a class="tile" href="Pres (3).png"><img src="Pres (3).png" alt="Title" loading="lazy"></a>
-            <a class="tile" href="Pres (4).png"><img src="Pres (4).png" alt="Title" loading="lazy"></a>
-            <a class="tile" href="Pres (5).png"><img src="Pres (5).png" alt="Title" loading="lazy"></a>
+            <a class="tile" href="Pres (3).png"><img src="Pres (3).png" alt="Title"></a>
+            <a class="tile" href="Pres (4).png"><img src="Pres (4).png" alt="Title"></a>
+            <a class="tile" href="Pres (5).png"><img src="Pres (5).png" alt="Title"></a>
           </div>
         </div>
         <div class="work-info">
@@ -688,11 +361,11 @@ body.lb-open{ overflow:hidden; }
 
       <article class="work-card">
         <div class="work-media">
-          <a class="tile work-cover" href="Pres (6).png"><img src="Pres (6).png" alt="Title" loading="lazy"></a>
+          <a class="tile work-cover" href="Pres (6).png"><img src="Pres (6).png" alt="Title"></a>
           <div class="work-thumbs">
-            <a class="tile" href="Pres (7).png"><img src="Pres (7).png" alt="Title" loading="lazy"></a>
-            <a class="tile" href="Pres (8).png"><img src="Pres (8).png" alt="Title" loading="lazy"></a>
-            <a class="tile" href="Pres (1).png"><img src="Pres (1).png" alt="Title" loading="lazy"></a>
+            <a class="tile" href="Pres (7).png"><img src="Pres (7).png" alt="Title"></a>
+            <a class="tile" href="Pres (8).png"><img src="Pres (8).png" alt="Title"></a>
+            <a class="tile" href="Pres (1).png"><img src="Pres (1).png" alt="Title"></a>
           </div>
         </div>
         <div class="work-info">
@@ -715,8 +388,8 @@ body.lb-open{ overflow:hidden; }
 
       <article class="work-card work-card--duo">
         <div class="work-duo">
-          <a class="tile" href="loft1 (1).png"><img src="loft1 (1).png" alt="LOFT Cafe brochure, outside panels" loading="lazy"></a>
-          <a class="tile" href="loft1 (2).png"><img src="loft1 (2).png" alt="LOFT Cafe brochure, inside panels" loading="lazy"></a>
+          <a class="tile" href="loft1 (1).png"><img src="loft1 (1).png" alt="LOFT Cafe brochure, outside panels"></a>
+          <a class="tile" href="loft1 (2).png"><img src="loft1 (2).png" alt="LOFT Cafe brochure, inside panels"></a>
         </div>
         <div class="work-info">
           <p class="work-type">Concept project</p>
@@ -728,13 +401,13 @@ body.lb-open{ overflow:hidden; }
 
       <article class="work-card work-card--duo work-card--single">
         <div class="work-single">
-          <a class="tile" href="Collage.JPG"><img src="Collage.JPG" alt="Photocollage with a large eye reflecting an airplane, surrounded by a glowing cosmic sky, a flying saucer and futuristic buildings" loading="lazy"></a>
+          <a class="tile" href="Collage.JPG"><img src="Collage.JPG" alt="Photocollage with a large eye reflecting an airplane, surrounded by a glowing cosmic sky, a flying saucer and futuristic buildings"></a>
         </div>
         <div class="work-info">
           <p class="work-type">Competition work &middot; 2nd place</p>
           <h3 class="work-title">Photocollage</h3>
           <p class="work-meta">Digital Collage &middot; Ibis Paint &middot; 2025</p>
-          <p class="work-desc">A surreal photocollage made in Ibis Paint during my university years. It won second place in the photocollage category of the American-Ukrainian computer graphics competition in 2025. </p>
+          <p class="work-desc">A surreal photocollage made in Ibis Paint during my university years. It won second place in the photocollage category of the American-Ukrainian computer graphics competition in 2025.</p>
         </div>
       </article>
 
@@ -766,31 +439,30 @@ body.lb-open{ overflow:hidden; }
 
 <script>
 (function(){
-  var box  = document.getElementById('lightbox');
-  var img  = box.querySelector('img');
-  var prev = box.querySelector('.lb-prev');
-  var next = box.querySelector('.lb-next');
-  var close = box.querySelector('.lb-close');
-  var items = [];
-  var index = 0;
+  var box=document.getElementById('lightbox');
+  var img=box.querySelector('img');
+  var prev=box.querySelector('.lb-prev');
+  var next=box.querySelector('.lb-next');
+  var close=box.querySelector('.lb-close');
+  var items=[];
+  var index=0;
 
   function show(i){
-    index = (i + items.length) % items.length;
-    var a = items[index];
-    var thumb = a.querySelector('img');
-    img.src = a.href;
-    img.alt = thumb ? thumb.alt : '';
+    index=(i+items.length)%items.length;
+    var a=items[index];
+    var thumb=a.querySelector('img');
+    img.src=a.href;
+    img.alt=thumb?thumb.alt:'';
   }
 
   function openBox(a){
-    // the gallery = all image links inside the same section
-    items = Array.prototype.filter.call(
+    items=Array.prototype.filter.call(
       a.closest('section').querySelectorAll('a.tile'),
       function(x){ return x.querySelector('img'); }
     );
     show(items.indexOf(a));
-    var single = items.length < 2;
-    prev.style.display = next.style.display = single ? 'none' : '';
+    var single=items.length<2;
+    prev.style.display=next.style.display=single?'none':'';
     box.classList.add('open');
     document.body.classList.add('lb-open');
     close.focus();
@@ -802,24 +474,24 @@ body.lb-open{ overflow:hidden; }
     img.removeAttribute('src');
   }
 
-  document.addEventListener('click', function(e){
-    var a = e.target.closest('a.tile');
-    if (a && a.querySelector('img') && !box.contains(a)) {
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('a.tile');
+    if(a&&a.querySelector('img')&&!box.contains(a)){
       e.preventDefault();
       openBox(a);
     }
   });
 
-  prev.addEventListener('click', function(){ show(index - 1); });
-  next.addEventListener('click', function(){ show(index + 1); });
-  close.addEventListener('click', closeBox);
-  box.addEventListener('click', function(e){ if (e.target === box) closeBox(); });
+  prev.addEventListener('click',function(){ show(index-1); });
+  next.addEventListener('click',function(){ show(index+1); });
+  close.addEventListener('click',closeBox);
+  box.addEventListener('click',function(e){ if(e.target===box) closeBox(); });
 
-  document.addEventListener('keydown', function(e){
-    if (!box.classList.contains('open')) return;
-    if (e.key === 'Escape') closeBox();
-    if (e.key === 'ArrowLeft'  && items.length > 1) show(index - 1);
-    if (e.key === 'ArrowRight' && items.length > 1) show(index + 1);
+  document.addEventListener('keydown',function(e){
+    if(!box.classList.contains('open')) return;
+    if(e.key==='Escape') closeBox();
+    if(e.key==='ArrowLeft'&&items.length>1) show(index-1);
+    if(e.key==='ArrowRight'&&items.length>1) show(index+1);
   });
 })();
 </script>
@@ -827,30 +499,31 @@ body.lb-open{ overflow:hidden; }
 <script>
 /* Reveal on scroll */
 (function(){
-  if (!('IntersectionObserver' in window)) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!('IntersectionObserver' in window)) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var els = document.querySelectorAll(
+  var els=document.querySelectorAll(
     'h2, .section-sub, .grid > .tile, .wide-pair .tile, .mixed-pair .tile, .work-card, .contact-body > *'
   );
 
-  var io = new IntersectionObserver(function(entries){
-    var n = 0;
-    entries.forEach(function(entry){
-      if (!entry.isIntersecting) return;
-      var el = entry.target;
-      var delay = Math.min(n, 5) * 90;   // items appearing together come in one after another
-      n++;
-      el.style.setProperty('--d', delay + 'ms');
+  var io=new IntersectionObserver(function(entries){
+    var vis=entries.filter(function(e){ return e.isIntersecting; })
+      .sort(function(a,b){ return a.boundingClientRect.top-b.boundingClientRect.top; });
+    var row=-1, lastTop=-9999;
+    vis.forEach(function(entry){
+      var el=entry.target;
+      var top=entry.boundingClientRect.top;
+      if(top-lastTop>20){ row++; lastTop=top; }
+      var delay=Math.min(row,3)*130;   // every tile in a row shares the same delay
+      el.style.setProperty('--d',delay+'ms');
       el.classList.add('in');
       io.unobserve(el);
-      // when the animation is done, hand the element back to its normal styles
       setTimeout(function(){
-        el.classList.remove('rv', 'in');
+        el.classList.remove('rv','in');
         el.style.removeProperty('--d');
-      }, 1600 + delay);
+      },1600+delay);
     });
-  }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+  },{threshold:0.08,rootMargin:'0px 0px -5% 0px'});
 
   els.forEach(function(el){
     el.classList.add('rv');
