@@ -224,16 +224,9 @@ body.lb-open{ overflow:hidden; }
   .intro-text .slide{ animation:slide-down 1.3s cubic-bezier(.22,.61,.36,1) .95s both; }
 }
 
-/* Reveal on scroll (.rv is added by the script at the bottom) */
-@keyframes rv-fade{ from{ opacity:0; } to{ opacity:1; } }
-@keyframes rv-rise{ from{ transform:translateY(16px); } to{ transform:translateY(0); } }
+/* One-time fade-in on page load (everything except the intro), then it just stays visible */
 @media (prefers-reduced-motion:no-preference){
-  .rv{ opacity:0; }
-  .rv.in{
-    animation:
-      rv-fade .5s ease-out var(--d,0ms) both,
-      rv-rise .8s cubic-bezier(.16,1,.3,1) var(--d,0ms) both;
-  }
+  main > section:not(.intro){ animation:fade-in 1.6s ease-out .5s both; }
 }
 </style>
 </head>
@@ -497,41 +490,6 @@ body.lb-open{ overflow:hidden; }
 })();
 </script>
 
-<script>
-/* Reveal on scroll */
-(function(){
-  if(!('IntersectionObserver' in window)) return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  var els=document.querySelectorAll(
-    'h2, .section-sub, .grid > .tile, .wide-pair .tile, .mixed-pair .tile, .work-card, .contact-body > *'
-  );
-
-  var io=new IntersectionObserver(function(entries){
-    var vis=entries.filter(function(e){ return e.isIntersecting; })
-      .sort(function(a,b){ return a.boundingClientRect.top-b.boundingClientRect.top; });
-    var row=-1, lastTop=-9999;
-    vis.forEach(function(entry){
-      var el=entry.target;
-      var top=entry.boundingClientRect.top;
-      if(top-lastTop>20){ row++; lastTop=top; }
-      var delay=Math.min(row,3)*130;   // every tile in a row shares the same delay
-      el.style.setProperty('--d',delay+'ms');
-      el.classList.add('in');
-      io.unobserve(el);
-      setTimeout(function(){
-        el.classList.remove('rv','in');
-        el.style.removeProperty('--d');
-      },1600+delay);
-    });
-  },{threshold:0.08,rootMargin:'0px 0px -5% 0px'});
-
-  els.forEach(function(el){
-    el.classList.add('rv');
-    io.observe(el);
-  });
-})();
-</script>
 
 </body>
 </html>
