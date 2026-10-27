@@ -225,14 +225,15 @@ body.lb-open{ overflow:hidden; }
 }
 
 /* Reveal on scroll (.rv is added by the script at the bottom) */
-@keyframes rv-in{
-  0%{ opacity:0; transform:translateY(26px); }
-  35%{ opacity:1; }
-  100%{ opacity:1; transform:translateY(0); }
-}
+@keyframes rv-fade{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes rv-rise{ from{ transform:translateY(16px); } to{ transform:translateY(0); } }
 @media (prefers-reduced-motion:no-preference){
   .rv{ opacity:0; }
-  .rv.in{ animation:rv-in .8s cubic-bezier(.16,1,.3,1) var(--d,0ms) both; }
+  .rv.in{
+    animation:
+      rv-fade .5s ease-out var(--d,0ms) both,
+      rv-rise .8s cubic-bezier(.16,1,.3,1) var(--d,0ms) both;
+  }
 }
 </style>
 </head>
