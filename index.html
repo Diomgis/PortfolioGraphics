@@ -18,9 +18,9 @@
 }
 
 :root{
-  --bg:      #f6f6f6;
-  --plum:    #4d263e;
-  --plum-55: rgba(77, 38, 62, 0.55);
+  --bg:      #f1f1f1;
+  --plum:    #080808;
+  --plum-55: #080808;
   --gap: 38px;
   --max: 1020px;
 }
@@ -59,6 +59,11 @@ header{
   font-size:clamp(2rem, 4.4vw, 2.9rem);
   text-align:center;
   letter-spacing:0.01em;
+}
+
+.name a{
+  color:inherit;
+  text-decoration:none;
 }
 
 nav{
@@ -103,6 +108,56 @@ h2{
 }
 
 section + section h2{ padding-top:64px; } /* a little more air between blocks */
+
+/* ---------- Intro (top of the page) ---------- */
+.intro{ padding:34px 0 6px; }
+
+.intro-grid{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  align-items:center;
+}
+
+/* the vertical line between the two parts */
+.intro-grid::before{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:0;
+  bottom:0;
+  width:1px;
+  background:rgba(8, 8, 8, 0.35);
+}
+
+.intro-hello .slide,
+.intro-text .slide{ display:block; }
+
+.intro-hello{
+  padding-right:28px;
+  text-align:right;
+  text-transform:uppercase;
+  font-weight:700;
+  font-size:clamp(1.3rem, 2.5vw, 2rem);
+  line-height:1.12;
+  letter-spacing:0.01em;
+}
+
+.intro-text{
+  padding-left:28px;
+  text-transform:uppercase;
+  font-size:0.78rem;
+  letter-spacing:0.06em;
+  line-height:1.6;
+}
+
+@media (max-width:760px){
+  .intro{ padding-top:22px; }
+  .intro-grid{ grid-template-columns:1fr; gap:22px; }
+  .intro-hello{ padding-right:0; text-align:left; font-size:clamp(1.4rem, 6vw, 1.8rem); }
+  .intro-text{ padding-left:0; font-size:0.74rem; }
+  .intro-grid::before{ display:none; }
+}
 
 /* ---------- Image grid ---------- */
 .grid{
@@ -179,6 +234,190 @@ section + section h2{ padding-top:64px; } /* a little more air between blocks */
   aspect-ratio:1.3 / 1;
 }
 
+/* tall + wide pair: same height, each shape matches its image exactly */
+.mixed-pair{
+  grid-column:1 / -1;
+  display:grid;
+  grid-template-columns:1fr 5fr;
+  gap:var(--gap);
+}
+
+.mixed-pair .tall{ aspect-ratio:2 / 5; }
+.mixed-pair .banner{ aspect-ratio:2 / 1; }
+
+/* ---------- Other works: presentation cards ---------- */
+.works{
+  display:flex;
+  flex-direction:column;
+  gap:var(--gap);
+}
+
+.work-card{
+  display:grid;
+  /* first column = exactly the width the big cover has today (no stretching) */
+  grid-template-columns:calc(46.67% - 26.65px) minmax(0,1fr);
+  gap:22px;
+  align-items:center;
+  padding:18px;
+  border:1px solid rgba(77, 38, 62, 0.18);
+}
+
+/* cover on top, the three slides in a row below it */
+.work-media{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.work-cover{ aspect-ratio:16 / 10; }
+
+.work-thumbs{
+  display:grid;
+  grid-template-columns:repeat(3, minmax(0,1fr));
+  gap:10px;
+}
+
+.work-thumbs .tile{
+  aspect-ratio:16 / 9;
+  min-height:0;
+}
+
+.work-thumbs .tile span,
+.work-cover span{ font-size:0.68rem; }
+
+/* card variant: two equal images side by side (e.g. both sides of a brochure) */
+.work-card.work-card--duo{
+  grid-template-columns:minmax(0,2.6fr) minmax(0,1.2fr);
+}
+
+.work-duo{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  align-self:center;
+}
+
+.work-duo .tile{ aspect-ratio:860 / 613; }
+
+/* card variant: one single image (e.g. a collage) */
+.work-card.work-card--single{
+  grid-template-columns:calc(46.67% - 26.65px) minmax(0,1fr);
+}
+
+.work-single .tile{ aspect-ratio:1280 / 985; }
+
+.work-info{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:0 8px;
+}
+
+.work-type{
+  font-size:0.68rem;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:var(--plum-55);
+}
+
+.work-title{
+  margin-top:12px;
+  font-size:clamp(1.3rem, 2.4vw, 1.7rem);
+  font-weight:500;
+  line-height:1.2;
+}
+
+.work-meta{
+  margin-top:10px;
+  font-size:0.8rem;
+  color:var(--plum-55);
+}
+
+.work-desc{
+  margin-top:16px;
+  font-size:0.84rem;
+  line-height:1.65;
+}
+
+.work-actions{
+  margin-top:24px;
+  display:flex;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:22px;
+}
+
+/* text column = exactly the height of the image block */
+.work-card:not(.work-card--duo) .work-info{
+  align-self:stretch;
+  justify-content:flex-start;
+  padding:0 8px;
+}
+
+.work-card:not(.work-card--duo) .work-title{
+  margin-top:10px;
+  font-size:clamp(1.4rem, 2.6vw, 1.9rem);
+}
+
+.work-card:not(.work-card--duo) .work-meta{
+  margin-top:10px;
+  font-size:0.85rem;
+}
+
+.work-card:not(.work-card--duo) .work-desc{
+  margin-top:16px;
+  font-size:0.88rem;
+  line-height:1.7;
+}
+
+/* buttons pushed to the bottom, no line */
+.work-card:not(.work-card--duo) .work-actions{
+  margin-top:auto;
+  padding-top:0;
+  border-top:none;
+}
+
+.work-media{ align-self:stretch; }
+
+.btn-pill,
+.link-pdf{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  font-size:0.8rem;
+  color:var(--plum);
+  text-decoration:none;
+}
+
+.btn-pill{
+  padding:11px 24px;
+  border:1px solid var(--plum);
+  border-radius:999px;
+  transition:background .18s ease, color .18s ease;
+}
+
+.btn-pill:hover,
+.btn-pill:focus-visible{
+  background:var(--plum);
+  color:var(--bg);
+}
+
+.link-pdf{
+  padding-bottom:2px;
+  border-bottom:1px solid transparent;
+  transition:border-color .18s ease;
+}
+
+.link-pdf:hover,
+.link-pdf:focus-visible{ border-bottom-color:var(--plum); }
+
+.btn-pill svg,
+.link-pdf svg{
+  width:15px;
+  height:15px;
+  flex:none;
+}
+
 /* ---------- Contact ---------- */
 #contact{ padding-bottom:110px; }
 
@@ -212,6 +451,21 @@ section + section h2{ padding-top:64px; } /* a little more air between blocks */
   .grid{ grid-template-columns:repeat(2, 1fr); }
   nav{ gap:18px; }
   html{ scroll-padding-top:150px; }
+  .mixed-pair{ grid-template-columns:1fr; }
+  .mixed-pair .tall{ width:min(260px, 70%); margin:0 auto; }
+  .work-card{ grid-template-columns:1fr; }
+  .work-card.work-card--duo{ grid-template-columns:1fr; }
+  .work-info{ padding:6px 4px 4px; }
+
+  /* mobile: normal spacing instead of "pinned to the bottom" */
+  .work-card:not(.work-card--duo) .work-info{
+    padding:6px 4px 4px;
+  }
+
+  .work-card:not(.work-card--duo) .work-actions{
+    margin-top:26px;
+    gap:14px 22px;
+  }
 }
 
 @media (max-width:460px){
@@ -226,19 +480,133 @@ section + section h2{ padding-top:64px; } /* a little more air between blocks */
   html{ scroll-behavior:auto; }
 }
 
+/* ---------- Lightbox ---------- */
+a.tile{ cursor:zoom-in; }
+
+.lightbox{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  padding:24px;
+  background:rgba(8,8,8,0.92);
+}
+
+.lightbox.open{ display:flex; }
+body.lb-open{ overflow:hidden; }
+
+.lightbox img{
+  max-width:100%;
+  max-height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.lb-btn{
+  position:absolute;
+  background:none;
+  border:0;
+  color:var(--bg);
+  font-size:2.4rem;
+  line-height:1;
+  padding:14px;
+  cursor:pointer;
+  opacity:0.75;
+  transition:opacity .18s ease;
+}
+
+.lb-btn:hover,
+.lb-btn:focus-visible{ opacity:1; }
+
+.lb-close{ top:8px; right:12px; }
+.lb-prev{ left:4px; top:50%; transform:translateY(-50%); }
+.lb-next{ right:4px; top:50%; transform:translateY(-50%); }
+
+/* ---------- Intro: opening animation ---------- */
+@keyframes fade-in{ from{ opacity:0; } to{ opacity:1; } }
+@keyframes fade-up{ from{ opacity:0; transform:translateY(16px); } to{ opacity:1; transform:none; } }
+@keyframes line-draw{ to{ transform:scaleY(1); } }
+@keyframes wipe-left{ from{ clip-path:inset(0 0 0 100%); } to{ clip-path:inset(0 0 0 0); } }
+@keyframes wipe-right{ from{ clip-path:inset(0 100% 0 0); } to{ clip-path:inset(0 0 0 0); } }
+@keyframes slide-left{ from{ transform:translateX(48px); } to{ transform:none; } }
+@keyframes slide-right{ from{ transform:translateX(-48px); } to{ transform:none; } }
+
+@media (prefers-reduced-motion:no-preference){
+  header{ animation:fade-in 1s ease both; }
+
+  /* 1. the line draws itself from top to bottom */
+  .intro-grid::before{
+    transform:scaleY(0);
+    transform-origin:top center;
+    animation:line-draw .9s cubic-bezier(.65,0,.35,1) .25s forwards;
+  }
+
+  /* 2. the heading slides out of the line to the left, the text to the right */
+  .intro-hello{ animation:wipe-left 1.3s cubic-bezier(.22,.61,.36,1) .8s both; }
+  .intro-hello .slide{ animation:slide-left 1.3s cubic-bezier(.22,.61,.36,1) .8s both; }
+
+  .intro-text{ animation:wipe-right 1.3s cubic-bezier(.22,.61,.36,1) .95s both; }
+  .intro-text .slide{ animation:slide-right 1.3s cubic-bezier(.22,.61,.36,1) .95s both; }
+}
+
+/* on phones there is no line, so the two parts simply fade up one after another */
+@media (prefers-reduced-motion:no-preference) and (max-width:760px){
+  .intro-hello{ animation:fade-up 1s cubic-bezier(.22,.61,.36,1) .3s both; }
+  .intro-text{ animation:fade-up 1s cubic-bezier(.22,.61,.36,1) .6s both; }
+  .intro-hello .slide,
+  .intro-text .slide{ animation:none; }
+}
+
+/* ---------- Reveal on scroll ---------- */
+/* The .rv class is added by the script at the bottom of the page,
+   so if JavaScript doesn't run, nothing is ever hidden. */
+@keyframes rv-in{
+  from{ opacity:0; transform:translateY(32px); }
+  to{   opacity:1; transform:translateY(0); }
+}
+
+@keyframes rv-settle{
+  from{ transform:scale(1.1); }
+  to{   transform:scale(1); }
+}
+
+@media (prefers-reduced-motion:no-preference){
+
+  /* hidden until it scrolls into view */
+  .rv{ opacity:0; }
+
+  /* the moment .in is added, the element rises and fades in */
+  .rv.in{
+    animation:rv-in .7s cubic-bezier(.22,.61,.36,1) var(--d, 0ms) both;
+  }
+
+  /* images start slightly zoomed and settle while the tile appears */
+  .rv.tile img,
+  .rv.tile video{ transform:scale(1.1); }
+
+  .rv.in.tile img,
+  .rv.in.tile video{
+    animation:rv-settle 1s cubic-bezier(.22,.61,.36,1) var(--d, 0ms) both;
+  }
+}
+
 </style>
 </head>
-<body>
+<body id="top">
 
 <header>
   <div class="wrap">
-    <h1 class="name">Tetiana Prysiazhniuk</h1>
+    <h1 class="name"><a href="#top">Tetiana Prysiazhniuk</a></h1>
     <nav>
-      <a href="#csec">Graphic design for CSEC VNTU</a>
+      <a href="#csec">CSEC</a>
       <span class="sep">|</span>
-      <a href="#graphic-design">Graphic design for VNTU</a>
+      <a href="#graphic-design">VNTU</a>
       <span class="sep">|</span>
       <a href="#digital-art">Digital art</a>
+      <span class="sep">|</span>
+      <a href="#other-works">Other works</a>
       <span class="sep">|</span>
       <a href="#contact">Contact</a>
     </nav>
@@ -247,79 +615,280 @@ section + section h2{ padding-top:64px; } /* a little more air between blocks */
 
 <main>
 
+<section class="intro">
+  <div class="wrap">
+    <div class="intro-grid">
+      <p class="intro-hello"><span class="slide">Hello, I&rsquo;m Tania! On this website, you can see a selection of my work as a graphic designer and digital artist.</span></p>
+      <p class="intro-text"><span class="slide">I&rsquo;m based in Vinnytsia, Ukraine, and in 2026 I graduated with honors with a bachelor&rsquo;s degree in software engineering from Vinnytsia National Technical University. I work part-time at the university, creating infographics, posters and presentations in Figma, Photoshop and Canva, and I previously designed posters for its Central Student Election Committee. In my free time, I make personal digital art and Live2D animations. I have also won prizes in graphics and IT competitions, including second place at the American-Ukrainian computer graphics competition in 2025.</span></p>
+    </div>
+  </div>
+</section>
+
 <section id="csec">
   <div class="wrap">
     <h2>Graphic design for CSEC VNTU</h2>
     <p class="section-sub">Posters made for Central Student Election Committee of VNTU</p>
     <div class="grid">
-      <a class="tile square" href="#"><img src="IMG_4165.JPG" alt="Title"></a>
-      <a class="tile square" href="#"><img src="IMG_4166.JPG" alt="Title"></a>
-      <a class="tile square" href="#"><img src="IMG_4167.JPG" alt="Title"></a>
-      <a class="tile square" href="#"><img src="IMG_4168.JPG" alt="Title"></a>
-      <a class="tile square" href="#"><img src="IMG_4169.JPG" alt="Title"></a>
-      <a class="tile square" href="#"><img src="IMG_4170.JPG" alt="Title"></a>
-      <a class="tile square" href="#"><img src="IMG_4171.JPG" alt="Title"></a>
-      <a class="tile square" href="#"><img src="IMG_4172.JPG" alt="Title"></a>
-      <a class="tile square" href="#"><img src="csec.jpg" alt="Title"></a>
-      
-      
+      <a class="tile square" href="IMG_4165.JPG"><img src="IMG_4165.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4166.JPG"><img src="IMG_4166.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4167.JPG"><img src="IMG_4167.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4168.JPG"><img src="IMG_4168.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4169.JPG"><img src="IMG_4169.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4170.JPG"><img src="IMG_4170.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4171.JPG"><img src="IMG_4171.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4172.JPG"><img src="IMG_4172.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="csec.jpg"><img src="csec.jpg" alt="Title" loading="lazy"></a>
     </div>
   </div>
 </section>
 
-  <section id="graphic-design">
+<section id="graphic-design">
   <div class="wrap">
     <h2>Graphic design for VNTU</h2>
     <p class="section-sub">Posters made for social media of Vinnytsia National Technical University</p>
     <div class="grid">
-      <a class="tile square" href="#"><img src="IMG_4133.JPG" alt="Title"></a>
-      <a class="tile square" href="#"><img src="IMG_4134.JPG" alt="Title"></a>
-      <a class="tile square" href="#"><img src="IMG_4136.JPG" alt="Title"></a>
-      <a class="tile" href="#"><img src="IMG_4140.JPG" alt="Title"></a>
-      <a class="tile" href="#"><img src="IMG_4137.JPG" alt="Title"></a>
-      <a class="tile" href="#"><img src="photo_5452077467922274215_y.jpg" alt="Title"></a>
-      
+      <a class="tile square" href="IMG_4133.JPG"><img src="IMG_4133.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4134.JPG"><img src="IMG_4134.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile square" href="IMG_4136.JPG"><img src="IMG_4136.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile" href="IMG_4140.JPG"><img src="IMG_4140.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile" href="IMG_4137.JPG"><img src="IMG_4137.JPG" alt="Title" loading="lazy"></a>
+      <a class="tile" href="photo_5452077467922274215_y.jpg"><img src="photo_5452077467922274215_y.jpg" alt="Title" loading="lazy"></a>
+
       <div class="wide-pair">
-        <a class="tile" href="#"><img src="IMG_4138.JPG" alt="Title"></a>
-        <a class="tile" href="#"><img src="IMG_4139.JPG" alt="Title"></a>
+        <a class="tile" href="IMG_4138.JPG"><img src="IMG_4138.JPG" alt="Title" loading="lazy"></a>
+        <a class="tile" href="IMG_4139.JPG"><img src="IMG_4139.JPG" alt="Title" loading="lazy"></a>
+      </div>
+
+      <div class="mixed-pair">
+        <a class="tile tall" href="long.jpg"><img src="long.jpg" alt="Title" loading="lazy"></a>
+        <a class="tile banner" href="cert.jpg"><img src="cert.jpg" alt="Title" loading="lazy"></a>
       </div>
     </div>
   </div>
 </section>
 
-  <section id="digital-art">
-    <div class="wrap">
-      <h2>Digital art</h2>
-      <div class="grid">
-        <a class="tile wide" href="#"><video src="Scene1(3).mp4" autoplay muted loop playsinline></video></a>
-        <a class="tile" href="#"><img src="image1.PNG" alt="Title"></a>
-        <a class="tile" href="#"><img src="img2 (1).PNG" alt="Title"></a>
-        <a class="tile" href="#"><img src="img2 (2).PNG" alt="Title"></a>
-        <a class="tile" href="#"><img src="img2 (3).PNG" alt="Title"></a>
-        <a class="tile" href="#"><img src="img2 (4).PNG" alt="Title"></a>
-        <a class="tile" href="#"><img src="img2 (5).PNG" alt="Title"></a>
-        <a class="tile" href="#"><video src="vidh.mp4" autoplay muted loop playsinline></video></a>
-        <a class="tile" href="#"><img src="img2 (7).PNG" alt="Title"></a>
-        <a class="tile" href="#"><video src="img2 (1).mp4" autoplay muted loop playsinline></video></a>
-        
-        
-      </div>
+<section id="digital-art">
+  <div class="wrap">
+    <h2>Digital art</h2>
+    <div class="grid">
+      <div class="tile wide"><video src="Scene1(3).mp4" autoplay muted loop playsinline preload="none"></video></div>
+      <a class="tile" href="image1.PNG"><img src="image1.PNG" alt="Title" loading="lazy"></a>
+      <a class="tile" href="img2 (1).PNG"><img src="img2 (1).PNG" alt="Title" loading="lazy"></a>
+      <a class="tile" href="img2 (2).PNG"><img src="img2 (2).PNG" alt="Title" loading="lazy"></a>
+      <a class="tile" href="img2 (3).PNG"><img src="img2 (3).PNG" alt="Title" loading="lazy"></a>
+      <a class="tile" href="img2 (4).PNG"><img src="img2 (4).PNG" alt="Title" loading="lazy"></a>
+      <a class="tile" href="img2 (5).PNG"><img src="img2 (5).PNG" alt="Title" loading="lazy"></a>
+      <div class="tile"><video src="vidh.mp4" autoplay muted loop playsinline preload="none"></video></div>
+      <a class="tile" href="img2 (7).PNG"><img src="img2 (7).PNG" alt="Title" loading="lazy"></a>
+      <div class="tile"><video src="SceneSlime.mp4" autoplay muted loop playsinline preload="none"></video></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="contact">
-    <div class="wrap">
-      <h2>Contact</h2>
-      <div class="contact-body">
-        <a href="mailto:tetianaprysiazhniukk@gmail.com">tetianaprysiazhniukk@gmail.com</a>
-        <a href="https://www.instagram.com/diomgis?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">Instagram</a>
-        <a href="tel:+380634713325">+380634713325</a>
-        <address>Vinnytsia, Ukraine</address>
-      </div>
+<section id="other-works">
+  <div class="wrap">
+    <h2>Other works</h2>
+    <div class="works">
+
+      <article class="work-card">
+        <div class="work-media">
+          <a class="tile work-cover" href="Pres (2).png"><img src="Pres (2).png" alt="Title" loading="lazy"></a>
+          <div class="work-thumbs">
+            <a class="tile" href="Pres (3).png"><img src="Pres (3).png" alt="Title" loading="lazy"></a>
+            <a class="tile" href="Pres (4).png"><img src="Pres (4).png" alt="Title" loading="lazy"></a>
+            <a class="tile" href="Pres (5).png"><img src="Pres (5).png" alt="Title" loading="lazy"></a>
+          </div>
+        </div>
+        <div class="work-info">
+          <p class="work-type">Academic project</p>
+          <h3 class="work-title">Software for 4D Figure Projections</h3>
+          <p class="work-meta">Presentation Design &middot; Bachelor&rsquo;s thesis</p>
+          <p class="work-desc">A defense presentation for my bachelor&rsquo;s thesis on developing software that creates projections of 4D figures. It covers the research goals, a comparison with existing tools, the software architecture, the mathematics of rotations and projections, and the interface. Complex technical material is turned into clear diagrams, tables and infographics.</p>
+          <div class="work-actions">
+            <a class="btn-pill" href="4DProject.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 9"/></svg>
+              Preview
+            </a>
+            <a class="link-pdf" href="4DProject.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>
+              Download PDF
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card">
+        <div class="work-media">
+          <a class="tile work-cover" href="Pres (6).png"><img src="Pres (6).png" alt="Title" loading="lazy"></a>
+          <div class="work-thumbs">
+            <a class="tile" href="Pres (7).png"><img src="Pres (7).png" alt="Title" loading="lazy"></a>
+            <a class="tile" href="Pres (8).png"><img src="Pres (8).png" alt="Title" loading="lazy"></a>
+            <a class="tile" href="Pres (1).png"><img src="Pres (1).png" alt="Title" loading="lazy"></a>
+          </div>
+        </div>
+        <div class="work-info">
+          <p class="work-type">Research project</p>
+          <h3 class="work-title">Media Phenomenon of Spartak Subbota</h3>
+          <p class="work-meta">Presentation Design &middot; 2023</p>
+          <p class="work-desc">A research presentation about the media phenomenon of the blogger Spartak Subbota and the public scandal around his credentials. It combines text analysis, interview quotes, media screenshots, a comparison table of news coverage and survey charts, and closes with conclusions on media literacy.</p>
+          <div class="work-actions">
+            <a class="btn-pill" href="Mediafenomen.pdf" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 9"/></svg>
+              Preview
+            </a>
+            <a class="link-pdf" href="Mediafenomen.pdf" download>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>
+              Download PDF
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="work-card work-card--duo">
+        <div class="work-duo">
+          <a class="tile" href="loft1 (1).png"><img src="loft1 (1).png" alt="LOFT Cafe brochure, outside panels" loading="lazy"></a>
+          <a class="tile" href="loft1 (2).png"><img src="loft1 (2).png" alt="LOFT Cafe brochure, inside panels" loading="lazy"></a>
+        </div>
+        <div class="work-info">
+          <p class="work-type">Concept project</p>
+          <h3 class="work-title">LOFT Caf&eacute; brochure</h3>
+          <p class="work-meta">Print Design &middot; Illustrator</p>
+          <p class="work-desc">A tri-fold brochure for LOFT, an imaginary caf&eacute;. Made in Adobe Illustrator as one of the tasks for my Photoshop and Illustrator certificate. Deep green and gold give it a warm, cozy feel, and it is designed to be printed.</p>
+        </div>
+      </article>
+
+      <article class="work-card work-card--duo work-card--single">
+        <div class="work-single">
+          <a class="tile" href="Collage.JPG"><img src="Collage.JPG" alt="Photocollage with a large eye reflecting an airplane, surrounded by a glowing cosmic sky, a flying saucer and futuristic buildings" loading="lazy"></a>
+        </div>
+        <div class="work-info">
+          <p class="work-type">Competition work &middot; 2nd place</p>
+          <h3 class="work-title">Photocollage</h3>
+          <p class="work-meta">Digital Collage &middot; Ibis Paint &middot; 2025</p>
+          <p class="work-desc">A surreal photocollage made in Ibis Paint during my university years. It won second place in the photocollage category of the American-Ukrainian computer graphics competition in 2025. </p>
+        </div>
+      </article>
+
     </div>
-  </section>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <div class="contact-body">
+      <a href="mailto:tetianaprysiazhniukk@gmail.com">tetianaprysiazhniukk@gmail.com</a>
+      <a href="https://www.instagram.com/diomgis?utm_source=ig_web_button_share_sheet&stkn=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener">Instagram</a>
+      <a href="https://t.me/Tanellord" target="_blank" rel="noopener">Telegram</a>
+      <a href="tel:+380634713325">+380634713325</a>
+      <address>Vinnytsia, Ukraine</address>
+    </div>
+  </div>
+</section>
 
 </main>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-btn lb-close" type="button" aria-label="Close">&times;</button>
+  <button class="lb-btn lb-prev" type="button" aria-label="Previous image">&lsaquo;</button>
+  <img src="" alt="">
+  <button class="lb-btn lb-next" type="button" aria-label="Next image">&rsaquo;</button>
+</div>
+
+<script>
+(function(){
+  var box  = document.getElementById('lightbox');
+  var img  = box.querySelector('img');
+  var prev = box.querySelector('.lb-prev');
+  var next = box.querySelector('.lb-next');
+  var close = box.querySelector('.lb-close');
+  var items = [];
+  var index = 0;
+
+  function show(i){
+    index = (i + items.length) % items.length;
+    var a = items[index];
+    var thumb = a.querySelector('img');
+    img.src = a.href;
+    img.alt = thumb ? thumb.alt : '';
+  }
+
+  function openBox(a){
+    // the gallery = all image links inside the same section
+    items = Array.prototype.filter.call(
+      a.closest('section').querySelectorAll('a.tile'),
+      function(x){ return x.querySelector('img'); }
+    );
+    show(items.indexOf(a));
+    var single = items.length < 2;
+    prev.style.display = next.style.display = single ? 'none' : '';
+    box.classList.add('open');
+    document.body.classList.add('lb-open');
+    close.focus();
+  }
+
+  function closeBox(){
+    box.classList.remove('open');
+    document.body.classList.remove('lb-open');
+    img.removeAttribute('src');
+  }
+
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a.tile');
+    if (a && a.querySelector('img') && !box.contains(a)) {
+      e.preventDefault();
+      openBox(a);
+    }
+  });
+
+  prev.addEventListener('click', function(){ show(index - 1); });
+  next.addEventListener('click', function(){ show(index + 1); });
+  close.addEventListener('click', closeBox);
+  box.addEventListener('click', function(e){ if (e.target === box) closeBox(); });
+
+  document.addEventListener('keydown', function(e){
+    if (!box.classList.contains('open')) return;
+    if (e.key === 'Escape') closeBox();
+    if (e.key === 'ArrowLeft'  && items.length > 1) show(index - 1);
+    if (e.key === 'ArrowRight' && items.length > 1) show(index + 1);
+  });
+})();
+</script>
+
+<script>
+/* Reveal on scroll */
+(function(){
+  if (!('IntersectionObserver' in window)) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  var els = document.querySelectorAll(
+    'h2, .section-sub, .grid > .tile, .wide-pair .tile, .mixed-pair .tile, .work-card, .contact-body > *'
+  );
+
+  var io = new IntersectionObserver(function(entries){
+    var n = 0;
+    entries.forEach(function(entry){
+      if (!entry.isIntersecting) return;
+      var el = entry.target;
+      var delay = Math.min(n, 5) * 90;   // items appearing together come in one after another
+      n++;
+      el.style.setProperty('--d', delay + 'ms');
+      el.classList.add('in');
+      io.unobserve(el);
+      // when the animation is done, hand the element back to its normal styles
+      setTimeout(function(){
+        el.classList.remove('rv', 'in');
+        el.style.removeProperty('--d');
+      }, 1600 + delay);
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -5% 0px' });
+
+  els.forEach(function(el){
+    el.classList.add('rv');
+    io.observe(el);
+  });
+})();
+</script>
 
 </body>
 </html>
