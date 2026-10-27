@@ -559,38 +559,7 @@ body.lb-open{ overflow:hidden; }
   .intro-text .slide{ animation:none; }
 }
 
-/* ---------- Reveal on scroll ---------- */
-/* The .rv class is added by the script at the bottom of the page,
-   so if JavaScript doesn't run, nothing is ever hidden. */
-@keyframes rv-in{
-  from{ opacity:0; transform:translateY(32px); }
-  to{   opacity:1; transform:translateY(0); }
-}
 
-@keyframes rv-settle{
-  from{ transform:scale(1.1); }
-  to{   transform:scale(1); }
-}
-
-@media (prefers-reduced-motion:no-preference){
-
-  /* hidden until it scrolls into view */
-  .rv{ opacity:0; }
-
-  /* the moment .in is added, the element rises and fades in */
-  .rv.in{
-    animation:rv-in .7s cubic-bezier(.22,.61,.36,1) var(--d, 0ms) both;
-  }
-
-  /* images start slightly zoomed and settle while the tile appears */
-  .rv.tile img,
-  .rv.tile video{ transform:scale(1.1); }
-
-  .rv.in.tile img,
-  .rv.in.tile video{
-    animation:rv-settle 1s cubic-bezier(.22,.61,.36,1) var(--d, 0ms) both;
-  }
-}
 
 </style>
 </head>
